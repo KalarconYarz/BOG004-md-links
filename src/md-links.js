@@ -1,47 +1,52 @@
 const mdLinks = (args) => {
-    console.log('llego a md', args);
- 
-// Modulos de NODE
-const fs = require('fs'); // fail system modulo utilizado de node
-const path = require('path'); //captura la ruta
+  console.log("llego a md", args);
+  // Modulos de NODE
+  const fs = require("fs"); // file system modulo utilizado de node
+  const path = require("path"); //captura la ruta
 
-// captura de ruta a partir de arry de args
-const terminalPath = args[2];
+  // captura de ruta a partir de arry de args
+  const terminalPath = args[2];
 
-// Conversion de ruta relativa a absoluta
-const pathAbsolute = path.resolve(terminalPath).normalize();
-console.log('Ruta convertida Absoluta', pathAbsolute);
-// captura de argumentos desde la terminal  
-//const args = process.argv; // arg nos captura kis argumentos y el valor de la informacion
-// console.log(args); 
+  // Resuelve y normaliza la  ruta de relativa a absoluta
+  const pathAbsolute = path.resolve(terminalPath).normalize();
+  console.log("Ruta convertida Absoluta", pathAbsolute);
 
-// Pregunta si es un argumento
-fs.stat(pathAbsolute, (err, stats) => {
-  if (err) throw err;
-  // console.log(`stats: ${JSON.stringify(stats)}`);
-  console.log('Soy un directorio',stats.isDirectory());
+  // verifica si existe la ruta
+  const validatePath = (path) => fs.existsSync(path);
 
-});
-}
-module.exports = mdLinks;
+  // función para saber si es un directorio o archivo si es directorio : true y si es archivo: false
+  const isFileOrDirectory = (pathToCheck) => {
+    fs.stat(pathToCheck, (err, stats) => {
+      if (err) throw err;
+      console.log("soy directorio?", stats.isDirectory());
+    });
+  };
+  // función para leer el contenido de mi archivo
+  const readFile = (pathToRead) => {
+    fs.readFile(pathToRead, "utf8", function (err, data) {
+      if (err) throw err;
+      console.log(data);
+    });
+  };
+  // Guardo el rersultado e invoco la función pasando conmo argumento pathAbsolute
+  const resultValidatePath = validatePath(pathAbsolute);
 
+  if (resultValidatePath === true) {
+    isFileOrDirectory(pathAbsolute);
+    readFile(pathAbsolute);
+  } else {
+    console.log("Fin del programa");
+  }
+};
 
-// const process = require ('process'); // Provee la informacion sobre el proceso de Node.Js
-// console.log('number of arguments is '+ args.length + ' index 2 ' +args[2]);
-// const pathArgument = path.resolve(args[2]) //resolve convierte la ruta en absoluto 
-// console.log(path.normalize(pathArgument)) // normaliza la ruta dada
-// // Lee el contenido del archivo
-// fs.readFile(path.normalize(pathArgument), 'utf8', function(err, data) {
-//   if (err) throw err;
-//   console.log(data);
-// });
 // Extrae el nombre de la extension del archivo
 // const extension = path.extname('prueba.md');
 // console.log('es un archivo md' + extension);
 // Obtiene la ruta absoluta del directorio y el archivo actual
-// const dirName = path.dirname(__dirname); //dirname obtiene la ruta 
+// const dirName = path.dirname(__dirname); //dirname obtiene la ruta
 // const filename= path.dirname(__filename); //filename es el archivo actual
 // // console.log('directory-name', dirName);
 
-
 // });
+
+module.exports = mdLinks;
