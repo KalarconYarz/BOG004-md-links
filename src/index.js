@@ -3,7 +3,7 @@ const mdlinks = require('./md-links.js');
 
 // node methods process
 const process = require('process');
-const terminalArgs = process.argv;
+const arguments = process.argv;
 
 // se invoca la funcion mdlinks
-mdlinks(terminalArgs);
+mdlinks(arguments);
