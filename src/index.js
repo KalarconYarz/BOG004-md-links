@@ -8,4 +8,4 @@ const process = require('process');
 const arguments = process.argv;
 
 // se invoca la funcion mdlinks
-mdlinks(arguments);
+mdlinks(arguments).then(links => console.log(links));

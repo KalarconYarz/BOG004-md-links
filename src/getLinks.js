@@ -17,6 +17,7 @@ const { JSDOM } = jsdom; // Destructuración
 const path = require('path');
 const process = require ('process')
 const {validateLinks} = require ('./validate.js')
+const chalk = require("chalk");
 
 const structureLink = {
   href: "",
@@ -36,8 +37,11 @@ const getLinks = (data, file, options) => {
   const document = dom.window.document;
   const links = document.querySelectorAll("a");
   if (links.length === 0)
-    return console.log(
-      (allLinksArray = `📰El archivo ${file}❌ no contiene links`)
+    return console.log(chalk.redBright.cyan(
+      (allLinksArray = `
+      ╔══════°❀•°✮°•❀°═════╗
+      📰El archivo ${file}❌ no contiene links
+       ╚══════°❀•°✮°•❀°═════╝`))
     );
   else {
     links.forEach((link) => {

@@ -22,7 +22,7 @@ const originalPath = (pathToConvert) => {
 //Función recursiva para leer el contenido de un directorio
 const readRecursionDir = (arrayPaths, fileAbsolutePath) => {
   const isDirResult = fs.statSync(fileAbsolutePath).isDirectory(); //statSync: se utiliza para devolver información sincrónicamente sobre la ruta de archivo dada
-  console.log('soy directorio 📘?',(chalk.blue(isDirResult)));
+  // console.log("soy directorio 📘?", chalk.blue(isDirResult));
   if (isDirResult) {
     const dirFileRes = fs.readdirSync(fileAbsolutePath); //recorrer el contenido de un directorio
     dirFileRes.forEach((file) => {
@@ -33,33 +33,74 @@ const readRecursionDir = (arrayPaths, fileAbsolutePath) => {
     const fileExtensionRes = path.extname(fileAbsolutePath); //obtine extension .md
     if (fileExtensionRes === ".md") {
       arrayPaths.push(fileAbsolutePath);
-    }
-    else {
-      console.log(chalk.magentaBright(` 📰 El archivo ${fileAbsolutePath} ❌ no es Markdown`));
+    } else {
+      console.log(chalk.magentaBright(`
+      ╔══════°❀•°✮°•❀°═════╗
+      📰El archivo ${fileAbsolutePath}❌ no es MD
+      ╚══════°❀•°✮°•❀°═════╝`))
     }
   }
   return arrayPaths;
-};
-
+}
+  
 
 // función para leer el contenido del archivo.md
-const readFilesContent = (arrayPaths) =>
-  new Promise((resolve) => {
-    arrayPaths.forEach((element) => {
-      fs.readFile(element, "utf-8", (err, data) => {
+const readFilesContent = (file) =>
+   new Promise((resolve) => {
+    const arr = [];
+     fs.readFile(file, "utf-8", (err, data) => {
         if (err) {
-          const resulErr = '😡 No se puede leer el contenido del array';
+          const resulErr = "😡 No se puede leer el archivo";
           console.log(resulErr, err);
         } else {
-         resolve(getLinks(data , element));
-        //  console.log(chalk.cyan.bold('Links Encontrados',(getLinks(data , element))));
-         console.log('Links Encontrados',(getLinks(data , element)));
+          resolve(getLinks(data, file))
 
-        }
+//         //   resolve(getLinks(data , element));
+//         //  console.log('Links Encontrados',(getLinks(data , element)));
+// //          console.log('Links Encontrados',(getLinks(data , element)));
+//           arr.push(getLinks(data, element));
+//           // console.log('que hay?',arr)
+//           // if (arrayPaths.length === arr.length) {
+//             const arrayPlano = arr.flat()
+//             arrayPlano
+
+
+          //   console.log('soy arayplano',arrayPlano);
+          //  resolve(arrayPlano);
+      // };
+       }
+       } );
       });
-    });
-  });
+    
 
+  
+  // });
+//          resolve(getLinks(data , element));
+//          console.log(chalk.cyan.bold('Links Encontrados',(getLinks(data , element))));
+//          console.log('Links Encontrados',(getLinks(data , element)));
+
+//         }
+//       });
+//     });
+//   });
+
+// const readFilesContent = (Filepath) =>
+//   new Promise((resolve) => {
+//     const arr = [];
+//     Filepath.forEach((element) => {
+//       fs.readFile(element, "utf8", (err, data) => {
+//         if (err) {
+//           const errorMessage = "❗ No se puede leer el contenido del archivo";
+//           console.log(errorMessage);
+//         } else {
+//           arr.push(getLinks(data, element));
+//           if (Filepath.length === arr.length) {
+//             resolve(arr.flat());
+//           }
+//         }
+//     });
+//   });
+// });
 
 module.exports = {
   originalPath,
