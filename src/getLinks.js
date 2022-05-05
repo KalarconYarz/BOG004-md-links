@@ -9,14 +9,15 @@ const { marked } = require("marked");
 // desde cero mediante los métodos que este script proporciona.
 
 //figlet:Con esta dependencia podemos crear banners con caracteres y simboloconst jsdom = require("jsdom");
-const figlet = require('figlet');
+// const figlet = require('figlet');
 
 // node-fetch: Módulo que permite realizar peticiones http mediante el uso de promesas
 // implementando el API Fetch.
 const fetch = require("node-fetch");
 // Para usar jsdom, utilizará principalmente el constructor JSDOM. Pase al constructor
 // una cadena y obtendrá un objeto JSDOM.
-const { JSDOM } = jsdom; // Destructuración
+
+const { JSDOM } = require('jsdom'); // Destructuración
 const path = require('path');
 const process = require ('process')
 const {validateLinks} = require ('./validate.js')
