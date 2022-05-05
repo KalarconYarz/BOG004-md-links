@@ -7,7 +7,10 @@ const { marked } = require("marked");
 // jsdom: Permite recrear un DOM dentro de un entorno en el que no contamos con un
 // navegador. Este DOM podemos tanto tomarlo de un fichero externo como crearlo
 // desde cero mediante los métodos que este script proporciona.
-const jsdom = require("jsdom");
+
+//figlet:Con esta dependencia podemos crear banners con caracteres y simboloconst jsdom = require("jsdom");
+const figlet = require('figlet');
+
 // node-fetch: Módulo que permite realizar peticiones http mediante el uso de promesas
 // implementando el API Fetch.
 const fetch = require("node-fetch");
@@ -18,6 +21,7 @@ const path = require('path');
 const process = require ('process')
 const {validateLinks} = require ('./validate.js')
 const chalk = require("chalk");
+
 
 const structureLink = {
   href: "",
@@ -53,7 +57,7 @@ const getLinks = (data, file, options) => {
         onlyLink.href = link.href;
         onlyLink.text = link.text;
         onlyLink.file = file;
-        allLinksArray.push(onlyLink);
+        allLinksArray.push(onlyLink); // Array de links
       }
     });
     if (options === "--validate") {
@@ -75,7 +79,7 @@ const getLinks = (data, file, options) => {
         return links;
       });
     } else {
-      return allLinksArray.flat(); //Eliminar array entre array
+      return allLinksArray; //Eliminar array entre array
     }
   }
 };

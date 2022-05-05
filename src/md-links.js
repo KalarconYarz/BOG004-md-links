@@ -44,7 +44,7 @@ const mdLinks = (args) =>
       console.error("  ❌ Ruta Invalida", err);
     }
 
-    // Se crea array para guardar el contenido de archivos.md y se invoca funcion e recursividad
+    // funcion para crear array de objetos con links y se invoca funcion e recursividad
     let pathArrayMd = [];
     if (resultValidatePath) {
       const filesMdResp = readRecursionDir(pathArrayMd, absolutPath); // invocamos la función que nos da la recursividad
@@ -66,10 +66,7 @@ const mdLinks = (args) =>
     Promise.all(
       pathArrayMd.map((file) => {
         return readFilesContent(file).then((links) => {
-          if (typeof links === "object") return links;
-          // console.group(
-          //   chalk.yellow("📚  readFilesContent desde md-links", objectLinks)
-          // );
+          if (typeof links === "object")  return links;
           else return [];
         });
      
