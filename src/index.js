@@ -21,10 +21,7 @@ const mdLinks = (path, options = {validate:false}) => new Promise((resolve, reje
     //<<<< Condicional que valida la ruta y la recursividad invocando la función fileSearch desde nodeMethods >>>>
     let arrayFilePathMd = [];
     if(resultValidatePath === false){
-      reject((chalk.redBright` 
-      ╔══════°❀•°✮°•❀°═════╗
-        ❌  Ruta invalida ❌
-      ╚══════°❀•°✮°•❀°═════╝`
+      reject((chalk.redBright`❌  Ruta invalida ❌`
       ))
     }else if(resultValidatePath){
       const filesMd = fileSearch(arrayFilePathMd, pathAbsolute) // invocamos la función que nos da la recursividad
@@ -38,11 +35,8 @@ const mdLinks = (path, options = {validate:false}) => new Promise((resolve, reje
           readFileContent(arrayFilePathMd) //<<<< Invocamos la funcion readFiles >>>
           .then((objectLinks)=>{
             if (objectLinks.length === 0) {
-              reject(chalk.redBright(` 
-              ╔══════°❀•°✮°•❀°═════╗
-                📕El archivo no contiene Links
-              ╚══════°❀•°✮°•❀°═════╝`
-              ));
+              reject(chalk.redBright(
+              '📕El archivo no contiene Links'));
             } else {
               if (options.validate === true) {
                 httpPetitionStatus(objectLinks).then(response => {

@@ -69,7 +69,7 @@ switch (arguments.length) {
       mdLinks(arguments[0], { validate: true })
         .then((response) => {
           console.log(`${totalLinksBroken(response)}`);
-          console.log(`${statusTemplate(response)}`);
+          // console.log(`${statusTemplate(response)}`);
         })
         .catch((err) => console.log(chalk.redBright.bold(err)));
     } else console.log(chalk.redBright.bold(' ☹️ Opción Inválida '));

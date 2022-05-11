@@ -2,8 +2,8 @@ const mdLinks = require('../src/index.js');
 const chalk = require("chalk")
 const path = 'test/test-pruebas';
 
-const rutaInvalida ='test/doc-test/pru.md';
-const rutaArchivoMd ='test/doc-test/prueba.md';
+const rutaInvalida ='test/test-pruebas/pru.md';
+const rutaArchivoMd ='test/test-pruebas/prueba.md';
 // const rutaArchivoMd = 'test/test-pruebas/prueba-test.md';
 
 const arrObjLinks= [
@@ -40,16 +40,12 @@ describe('mdLinks', () => {
       return await mdLinks(rutaInvalida, {validate:true});
      } catch(e) {
           return expect(e).toMatch(chalk.redBright(
-         `╔══════°❀•°✮°•❀°═════╗
-            ❌  Ruta invalida ❌
-          ╚══════°❀•°✮°•❀°═════╝`));
+         `❌  Ruta invalida ❌`));
         };
   });
 
  it('Debe retornar un mensaje de que el archivo no contiene links', () => {
    return mdLinks(rutaArchivoMd).catch(e => expect(e).toMatch(chalk.redBright(
-  `╔══════°❀•°✮°•❀°═════╗
-     📕El archivo no contiene Links
-   ╚══════°❀•°✮°•❀°═════╝`)));
+  `📕El archivo no contiene Links`)));
     });
 })

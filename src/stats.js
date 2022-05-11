@@ -34,7 +34,7 @@ const totalLinksBroken = (arraylinks) => {
     const uniqueLinks = [...new Set(totalArray)];
     const brokenLinks = arraylinks.filter(link => link.status != 200)
     return `${chalk.yellowBright.bold(` 
-    ⋆⌘⋆------  STATS & VALIDATE------ ⋆⌘⋆ :
+    ⋆⌘⋆------  STATS WITH VALIDATE------ ⋆⌘⋆ :
     `)}
     ${chalk.greenBright.bold(`\t▷ Total:${totalArray.length} \n\t▷ Unique:${uniqueLinks.length}`, chalk.blueBright(`\n\t▷ Broken:${brokenLinks.length} `) )}
     `
