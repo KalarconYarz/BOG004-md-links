@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "md-links_karen_a",
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
@@ -19,17 +19,27 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage --verbose"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KalarconYarz/BOG004-md-links.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "JavaScript",
+    "cli",
+    "npm"
+  ],
+  "author": "Karen Yuliana Alarcón",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KalarconYarz/BOG004-md-links/issues"
   },
-  "homepage": "https://github.com/KalarconYarz/BOG004-md-links#readme"
+  "homepage": "https://github.com/KalarconYarz/BOG004-md-links#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^28.1.0"
+  }
 }

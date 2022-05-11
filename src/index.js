@@ -11,7 +11,7 @@ const {
 const chalk = require("chalk");
 
 //<<<< Función mdLinks >>>>
-const mdLinks = (path, options) => new Promise((resolve, reject) => {
+const mdLinks = (path, options = {validate:false}) => new Promise((resolve, reject) => {
 
 //<<<< convertir ruta capturada en absoluta >>>>-
     const pathAbsolute = converterPath(path);
@@ -35,7 +35,7 @@ const mdLinks = (path, options) => new Promise((resolve, reject) => {
          ╚══════°❀•°✮°•❀°═════╝`
             ))
         }else{
-          readFileContent(arrayFilePathMd) //👈 Invocamos la funcion readFiles 
+          readFileContent(arrayFilePathMd) //<<<< Invocamos la funcion readFiles >>>
           .then((objectLinks)=>{
             if (objectLinks.length === 0) {
               reject(chalk.redBright(` 

@@ -13,7 +13,7 @@
 const mdLinks = require('./index');
 const process = require('process');
 const chalk = require('chalk');
-const { arrayTemplate, statusTemplate, totalLinks } = require('./stats.js');
+const { arrayTemplate, statusTemplate, totalLinks,totalLinksBroken  } = require('./stats.js');
 
 const arguments = process.argv.slice(2);
 
@@ -27,7 +27,7 @@ const { text } = require('figlet');
           console.dir(err);
           return;
     }
-      console.log(data)
+      console.log(chalk.magentaBright.bold(data))
 });
 
 
@@ -58,9 +58,7 @@ switch (arguments.length) {
         })
         .catch((err) => console.log(chalk.redBright.bold(err)));
     }
-    // else if (argumentos[1] === '--help') {
-    //   console.log(chalk.cyan.bold(help));
-    // }
+ 
     else console.log(chalk.redBright.bold(' ☹️ Opción Inválida '));
     break;
   case 3:
@@ -70,7 +68,7 @@ switch (arguments.length) {
     ) {
       mdLinks(arguments[0], { validate: true })
         .then((response) => {
-          console.log(`${totalLinks(response)}`);
+          console.log(`${totalLinksBroken(response)}`);
           console.log(`${statusTemplate(response)}`);
         })
         .catch((err) => console.log(chalk.redBright.bold(err)));
