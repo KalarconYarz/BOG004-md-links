@@ -12,11 +12,13 @@
 
 ## 1. Preámbulo
 
+```sh
                 _       _     _       _        
   _ __ ___   __| |     | |   (_)_ __ | | _____ 
  | '_ ` _ \ / _` |_____| |   | | '_ \| |/ / __|
  | | | | | | (_| |_____| |___| | | | |   <\__ \
  |_| |_| |_|\__,_|     |_____|_|_| |_|_|\_\___/
+```
 
 Markdown es un lenguaje de marcado ligero muy popular entre developers. Es usado en muchísimas plataformas que
 manejan texto plano (GitHub, foros, blogs, ...), y es muy común
