@@ -108,12 +108,6 @@ Si pasamos la opción `--validate`, nos permitira averiguar si el link funciona 
 Por ejemplo:
 
 ```sh
-$ md-links ./some/example.md --validate
-./some/example.md http://algo.com/2/3/ ok 200 Link a algo
-./some/example.md https://otra-cosa.net/algun-doc.html fail 404 algún doc
-./some/example.md http://google.com/ ok 301 Google
-```
-
 $ md-links file-md/prueba.md --validate
                 _       _     _       _        
   _ __ ___   __| |     | |   (_)_ __ | | _____ 
@@ -130,16 +124,14 @@ href: https://es-la.facebook.com/  status: 200  ok: OK
  ---
  href: https://es-la.facebook.co/  status: 404  fail: fail
  ---
+```
 
 ##### `--stats`
 
 Si pasamos la opción `--stats` nos mostrara un texto con estadísticas sobre los links.
 
+
 ```sh
-$ md-links ./some/example.md --stats
-Total: 3
-Unique: 3
-```
 $ md-links file-md/prueba.md --stats
                 _       _     _       _        
   _ __ ___   __| |     | |   (_)_ __ | | _____ 
@@ -152,17 +144,11 @@ $ md-links file-md/prueba.md --stats
     
         ▷ Total:4 
         ▷ Unique:4
-
+```
 
 También podemos combinar `--stats` y `--validate` para obtener estadísticas que necesiten de los resultados de la validación.
 
 ```sh
-$ md-links ./some/example.md --stats --validate
-Total: 3
-Unique: 3
-Broken: 1
-```
-
 $ md-links file-md/prueba.md --validate --stats
                 _       _     _       _        
   _ __ ___   __| |     | |   (_)_ __ | | _____ 
@@ -186,6 +172,6 @@ href: https://es-la.facebook.com/  status: 200  ok: OK
  ---
  href: https://es-la.facebook.co/  status: 404  fail: fail
  ---
-
+```
 
 
