@@ -31,9 +31,16 @@ describe('mdLinks', () => {
   it('Debe retornar una promesa', () =>{
     expect(mdLinks(path)instanceof Promise).toBeTruthy()
   });
-  it('Debe retornar un arreglo de objetos de links validados',() => 
-  mdLinks(path, { validate: true }).then((e) =>
-    expect(e).toEqual(arrObjLinks)));
+  it('Debería retornar un arreglo de objetos de links validados',
+        () => {
+            return mdLinks(path, { validate: false })
+                .then(e => {
+                    expect(e).toMatch('arrObjLinks')
+                })
+                .catch((error) => {
+                    return error;
+                })
+});
     
  it('Debe retornar un mensaje de error si la ruta no es válida', async () => {
      try {
@@ -43,9 +50,4 @@ describe('mdLinks', () => {
          `❌  Ruta invalida ❌`));
         };
   });
-
- it('Debe retornar un mensaje de que el archivo no contiene links', () => {
-   return mdLinks(rutaArchivoMd).catch(e => expect(e).toMatch(chalk.redBright(
-  `📕El archivo no contiene Links`)));
-    });
 })

@@ -47,6 +47,11 @@ MD-Links es una biblioteca creada para ofrecer al usuario una interfaz(API) que 
 ## 4. Insrucciones
 ### 1) JavaScript API
 
+En la terminal:
+```sh
+npm i md-links_karen_a
+```
+
 Se debe importar:
 ```js
 const mdLinks = require("md-links_Ka");
@@ -168,16 +173,6 @@ $ md-links file-md/prueba.md --validate --stats
         ▷ Total:4 
         ▷ Unique:4 
         ▷ Broken:1 
-
-⋆⌘⋆------  ESTADO DE LOS LINKS ------ ⋆⌘⋆ :
-href: https://nodejs.org/es/  status: 200  ok: OK
- ---
-href: https://developers.google.com/v8/  status: 200  ok: OK
- ---
-href: https://es-la.facebook.com/  status: 200  ok: OK
- ---
- href: https://es-la.facebook.co/  status: 404  fail: fail
- ---
 ```
 
 
