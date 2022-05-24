@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 
-//Funcion que muestra los linls encontrados
+//Funcion que muestra los links encontrados
 const arrayTemplate = (arrayLinks) => {
     console.log(chalk.yellowBright.bold(`⋆⌘⋆------ LINKS ENCONTRADOS ------ ⋆⌘⋆ :`));
     arrayLinks.forEach(link => {

@@ -32,22 +32,21 @@ describe('mdLinks', () => {
     expect(mdLinks(path)instanceof Promise).toBeTruthy()
   });
   it('Debería retornar un arreglo de objetos de links validados',
-        () => {
-            return mdLinks(path, { validate: false })
-                .then(e => {
-                    expect(e).toMatch('arrObjLinks')
-                })
-                .catch((error) => {
-                    return error;
-                })
-});
+        async () => {
+            const e = await mdLinks(path, { validate: false });
+          expect(e).toMatch('arrObjLinks');
+              }, 5000)
+
+
     
  it('Debe retornar un mensaje de error si la ruta no es válida', async () => {
-     try {
-      return await mdLinks(rutaInvalida, {validate:true});
-     } catch(e) {
-          return expect(e).toMatch(chalk.redBright(
+    
+      return mdLinks(rutaInvalida, {validate:true})
+      .then(e => {
+          expect(e).toMatch(chalk.redBright(
          `❌  Ruta invalida ❌`));
-        };
+        })
+        .catch((error) => {
+          return error;
   });
-})
+})})

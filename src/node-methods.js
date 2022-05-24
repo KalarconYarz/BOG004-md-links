@@ -30,15 +30,15 @@ const validatePath = (path) => fs.existsSync(path);
 
 // Funcion Recusriva (file o directory)
 const fileSearch = (arrayPaths, fileAbsolutePath) => {
-  const isDirResult = fs.statSync(fileAbsolutePath).isDirectory();
+  const isDirResult = fs.statSync(fileAbsolutePath).isDirectory(); //devuelve información sobre la ruta del archivo dada de forma síncrona
   if (isDirResult) {
     const dirFileRes = fs.readdirSync(fileAbsolutePath); //recorrer el contenido de un directorio
     dirFileRes.forEach((file) => {
-      const dirAbsolutepath = path.join(fileAbsolutePath, file);
+      const dirAbsolutepath = path.join(fileAbsolutePath, file); // JOIN une los elementos y devuelve una cadena
       if (dirFileRes) fileSearch(arrayPaths, dirAbsolutepath);
     });
   } else {
-    const fileExtensionRes = path.extname(fileAbsolutePath); //obtine .md
+    const fileExtensionRes = path.extname(fileAbsolutePath); //obtenga la extensión de una ruta de archivo
     if (fileExtensionRes === ".md") {
       arrayPaths.push(fileAbsolutePath);
     }
@@ -52,14 +52,14 @@ const fileSearch = (arrayPaths, fileAbsolutePath) => {
     const regxUrl = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
     const regxText = /\[[\w\s\d.()]+\]/;
     const content = fileContent;
-    const contentLinks = content.match(regxLink);
+    const contentLinks = content.match(regxLink); // match:  obtiene todas las ocurrencias de una expresión regular dentro de una cadena.
     if (contentLinks) {
-      const objLinks = contentLinks.map((links) => {
-        const linkHref = links.match(regxUrl).join().slice(1, -1);
-        const linkText = links.match(regxText).join().slice(1, -1);
+      const objLinks = contentLinks.map((links) => { //rccorre y crea un nuevo array
+        const linkHref = links.match(regxUrl).join().slice(1, -1);  // JOIN une los elementos y devuelve una cadena
+        const linkText = links.match(regxText).join().slice(1, -1); //devuelve una copia extrae segunda y ultima posicion
         return {
           href: linkHref,
-          text: linkText.substring(0, 50),
+          text: linkText.substring(0, 50), // no puede ser mayor a 50 caracteres
           file: pathMdList,
         };
       });
@@ -85,7 +85,7 @@ const readFileContent = (pathMdList) => new Promise((resolve) => {
             arrMds.push(resArray) 
             // console.log(resArray);
             if (arrMds.length === pathMdList.length) {
-              resolve(arrMds.flat());
+              resolve(arrMds.flat()); // flat elimina un array dentro de otro array
             }
           })
           .catch((err)=>{
@@ -114,13 +114,13 @@ const readFileContent = (pathMdList) => new Promise((resolve) => {
         status: 404,
         ok: 'fail'
         })));
-    return Promise.all(arrPromise);
+    return Promise.all(arrPromise); //espera un arreglo de promesas y que estas se resuelvan
 };
 
 // funcion output con --stats
 const outputWithS = (arrObjLinks) => {
   const totalLinks = arrObjLinks.length;
-  const unique = [...new Set(arrObjLinks.map((link) => link.href))];
+  const unique = [...new Set(arrObjLinks.map((link) => link.href))]; //permite crear Setobjetos que almacenan valores únicos de cualquier tipo
   const uniqueLinks = unique.length;
   const brokenLinks = arrObjLinks.filter(link => link.status != 200)
   const totalBroken = brokenLinks.length
